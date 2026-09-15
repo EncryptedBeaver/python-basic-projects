@@ -28,6 +28,49 @@ This project demonstrates basic Python functionality and flow control:
 
 ---
 
+
+## 🎱 2. Magic 8 Ball
+
+### 📝 Description
+A fun command-line fortune-telling application. The program greets the user by name, prompts them to ask any question, and randomly selects a humorous or insightful response from a predefined list of answers.
+
+---
+
+### 🛠️ Key Concepts Applied
+* **Data Types:** Strings (`str`), Integers (`int`), and Lists (`list`)
+* **Variables & Lists:** Storing multiple prompt variations and answers in structured lists
+* **I/O Operations:** Reading user input via `input()` and outputting answers with `print()`
+* **String Methods:** Formatting text with `.capitalize()`, `.lower()`, `.strip()`, and `f-strings`
+* **Custom Functions:** Reusable logic using `def` (e.g., `one_more_question()`)
+* **Control Flow:** Validation and branching using `if` / `elif` / `else` logic
+* **Loop Mechanics:** Infinite main loop (`while True`) managed with `break` and state conditions
+* **Random Module:** Selecting dynamic elements using `random.choice()`
+
+---
+
+### 💻 Code Preview
+
+```python
+import random
+
+# Dynamic prompts and magic responses
+PROMPTS = [
+    "What is on your mind?",
+    "Ask away! The orb is listening...",
+    "Consult the magic orb: What is your question?"
+]
+
+ANSWERS = [
+    "Outlook good",
+    "100% yes, go for it!",
+    "Error 404: Hope not found",
+    "My coffee hasn't kicked in yet"
+]
+
+# Random selection in action
+question = input(f"{random.choice(PROMPTS)} ")
+print(f" -> {random.choice(ANSWERS)}")
+
 ### 🚀 How to Run
 
 1. Make sure you have **Python 3.x** installed.
