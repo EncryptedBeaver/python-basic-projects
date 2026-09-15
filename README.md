@@ -48,29 +48,6 @@ A fun command-line fortune-telling application. The program greets the user by n
 
 ---
 
-### 💻 Code Preview
-
-```python
-import random
-
-# Dynamic prompts and magic responses
-PROMPTS = [
-    "What is on your mind?",
-    "Ask away! The orb is listening...",
-    "Consult the magic orb: What is your question?"
-]
-
-ANSWERS = [
-    "Outlook good",
-    "100% yes, go for it!",
-    "Error 404: Hope not found",
-    "My coffee hasn't kicked in yet"
-]
-
-# Random selection in action
-question = input(f"{random.choice(PROMPTS)} ")
-print(f" -> {random.choice(ANSWERS)}")
-```
 
 ### 🚀 How to Run
 
