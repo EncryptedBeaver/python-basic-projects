@@ -70,11 +70,11 @@ ANSWERS = [
 # Random selection in action
 question = input(f"{random.choice(PROMPTS)} ")
 print(f" -> {random.choice(ANSWERS)}")
+```
 
 ### 🚀 How to Run
 
 1. Make sure you have **Python 3.x** installed.
 2. Clone the repository and navigate to the project directory:
-   ```bash
    git clone [https://github.com/EncryptedBeaver/python-basic-projects.git](https://github.com/your-username/python-basic-projects.git)
    cd python-basic-projects
