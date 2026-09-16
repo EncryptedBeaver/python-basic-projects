@@ -39,9 +39,8 @@ def one_more_time(again):
 
 print(greetings())
 
-is_running = True
 
-while is_running:
+while True:
     limit_input = input("\nEnter upper limit N: ")
     while not is_valid_limit(limit_input):
         print("\nInvalid imput! Please enter a positive number.")
