@@ -48,6 +48,20 @@ A fun command-line fortune-telling application. The program greets the user by n
 
 ---
 
+## 🔐 3. Password Generator
+
+### 📝 Description
+A customizable command-line tool that generates secure, random passwords based on user preferences. You can set the number of passwords, choose the length, and selectively include or exclude digits, uppercase/lowercase letters, and special symbols.
+
+### 🛠️ Key Concepts Applied
+* **Data Types & Variables:** Working with strings (`str`), integers (`int`), and boolean values (`True`/`False`).
+* **I/O Operations:** Taking interactive prompts with `input()` and formatting the output via `print()`.
+* **Input Sanitation:** Cleaning strings using `.strip()` and `.lower()` to handle user choices safely.
+* **Reusable Functions:** Custom validation functions (`ask_question`, `ask_number`) to follow DRY principles and handle logic neatly.
+* **Control Flow & Loops:** Input validation using `while` loops and batch generation using `for` loops.
+* **Random Module:** Utilizing `random.sample()` / `random.choices()` to assemble unpredictable character strings.
+
+
 
 ### 🚀 How to Run
 
