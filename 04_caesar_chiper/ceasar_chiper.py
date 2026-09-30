@@ -4,7 +4,7 @@ RUS_LOWER_ALPHABET = "абвгдежзийклмнопрстуфхцчшщъыь
 RUS_UPPER_ALPHABET = "АБВГДЕЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ"
 
 
-# Ask user what he wants to do: 'decode' = True or 'encode' = False the line
+# Prompt the user to choose between 'encode' or 'decode' mode.
 def ask_mode(prompt):
     user_answer = input(prompt).lower().strip()
     while user_answer not in ("decode", "encode"):
@@ -13,7 +13,7 @@ def ask_mode(prompt):
     return user_answer == "decode"
 
 
-# Ask user to choose language (EN or RU)
+# Prompt the user to select the target language ('en' or 'ru').
 def choose_language(prompt):
     user_answer = input(prompt).lower().strip()
     while user_answer not in ("en", "ru"):
@@ -22,102 +22,48 @@ def choose_language(prompt):
     return user_answer
 
 
-# Check if the user entered integer
-def check_num(n_shift):
-    user_num = input(n_shift)
+# Prompt for and validate an integer input for the shift step.
+def check_num(prompt):
+    user_num = input(prompt)
     while not user_num.isdigit():
         print("Please enter integer > 0")
-        user_num = input(n_shift)
-
+        user_num = input(prompt)
     return int(user_num)
 
 
-# Main function
-def shifted_text(text, rot, language, mode):
+# Encrypt or decrypt text using the Caesar cipher algorithm.
+def shifted_text(mode, language, text, rot):
+    result_text = ""
 
-    rusult_text = ""
-
-    # For Russian text
     if language == "ru":
-        # If user wants to encode the text
-        if not mode:
-            for char in text:
-                if char.isupper():
-                    idx = RUS_UPPER_ALPHABET.find(char)
-                    new_idx = (idx + rot) % len(RUS_UPPER_ALPHABET)
-                    rusult_text += RUS_UPPER_ALPHABET[new_idx]
+        lower_alph, upper_alph = RUS_LOWER_ALPHABET, RUS_UPPER_ALPHABET
+    else:
+        lower_alph, upper_alph = ENG_LOWER_ALPHABET, ENG_UPPER_ALPHABET
 
-                elif char.islower():
-                    idx = RUS_LOWER_ALPHABET.find(char)
-                    new_idx = (idx + rot) % len(RUS_LOWER_ALPHABET)
-                    rusult_text += RUS_LOWER_ALPHABET[new_idx]
+    if mode:
+        rot = -rot
 
-                else:
-                    rusult_text += char
-
-        # If user wants to decode the text
+    for char in text:
+        if char.isupper():
+            idx = upper_alph.find(char)
+            new_idx = (idx + rot) % len(upper_alph)
+            result_text += upper_alph[new_idx]
+        elif char.islower():
+            idx = lower_alph.find(char)
+            new_idx = (idx + rot) % len(lower_alph)
+            result_text += lower_alph[new_idx]
         else:
-            for char in text:
-                if char.isupper():
-                    idx = RUS_UPPER_ALPHABET.find(char)
-                    new_idx = (idx - rot) % len(RUS_UPPER_ALPHABET)
-                    rusult_text += RUS_UPPER_ALPHABET[new_idx]
+            result_text += char
 
-                elif char.islower():
-                    idx = RUS_LOWER_ALPHABET.find(char)
-                    new_idx = (idx - rot) % len(RUS_LOWER_ALPHABET)
-                    rusult_text += RUS_LOWER_ALPHABET[new_idx]
-
-                else:
-                    rusult_text += char
-
-    # For English text
-    if language == "en":
-        # If user wants to encode the text
-        if not mode:
-            for char in text:
-                if char.isupper():
-                    idx = ENG_UPPER_ALPHABET.find(char)
-                    new_idx = (idx + rot) % len(ENG_UPPER_ALPHABET)
-                    rusult_text += ENG_UPPER_ALPHABET[new_idx]
-
-                elif char.islower():
-                    idx = ENG_LOWER_ALPHABET.find(char)
-                    new_idx = (idx + rot) % len(ENG_LOWER_ALPHABET)
-                    rusult_text += ENG_LOWER_ALPHABET[new_idx]
-
-                else:
-                    rusult_text += char
-
-        # If user wants to decode the text
-        else:
-            for char in text:
-                if char.isupper():
-                    idx = ENG_UPPER_ALPHABET.find(char)
-                    new_idx = (idx - rot) % len(ENG_UPPER_ALPHABET)
-                    rusult_text += ENG_UPPER_ALPHABET[new_idx]
-
-                elif char.islower():
-                    idx = ENG_LOWER_ALPHABET.find(char)
-                    new_idx = (idx - rot) % len(ENG_LOWER_ALPHABET)
-                    rusult_text += ENG_LOWER_ALPHABET[new_idx]
-
-                else:
-                    rusult_text += char
-
-    return rusult_text
+    return result_text
 
 
-n_shift = "How many symbols do you want to shift to the right? "
-which_language = "Which language do you prefer? Enter: en/ru "
-which_mode = "What do you want to do with your text: Enter: 'encode' or 'decode' ? "
-user_text = input("Input the text you want to 'encode' or 'decode': ")
+# Main Execution
+mode = ask_mode("What do you want to do? ('encode' / 'decode'): ")
+language = choose_language("Which language? ('en' / 'ru'): ")
+shift = check_num("How many symbols to shift?: ")
+user_text = input("Enter your text: ")
 
-print(
-    shifted_text(
-        user_text,
-        check_num(n_shift),
-        choose_language(which_language),
-        ask_mode(which_mode),
-    )
-)
+result = shifted_text(mode, language, user_text, shift)
+
+print(result)
